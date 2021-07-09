@@ -16,7 +16,7 @@ target 'Conference' do
 
   pod 'SocketRocket'
   pod 'PromiseKit'
-  # pod 'YTVimeoExtractor'
+  pod 'YTVimeoExtractor'
   # pod 'XCDYouTubeKit'
   pod 'XCDYouTubeKit', git: 'git@github.com:iOSDev-Auction/XCDYouTubeKit.git'
 

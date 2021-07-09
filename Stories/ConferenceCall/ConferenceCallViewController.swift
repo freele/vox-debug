@@ -26,8 +26,10 @@ final class ConferenceCallViewController:
     var storyAssembler: StoryAssembler! // DI
     var video: Bool! // DI
     
-    private let videoPlayer = BackgroundVideoPlayer(withURL: "dp8PhLsUcFE")
-    
+//    YT
+//    private let videoPlayer = BackgroundVideoPlayer(withURL: "dp8PhLsUcFE")
+//    Vimeo
+    private let videoPlayer = BackgroundVideoPlayer(withURL: "330694222")
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -13,6 +13,7 @@ import CoreMedia
 import VoxImplant
 import PromiseKit
 import XCDYouTubeKit
+import YTVimeoExtractor
 
 #if os(iOS)
 import AVKit
@@ -48,15 +49,9 @@ public class BackgroundVideoPlayer: UIViewController {
         }
 
         self.video = Promise { seal in
-            XCDYouTubeClient.default().getVideoWithIdentifier(self.contentVideoIdString, completionHandler: { video, error in
-                if let error = error {
-                    log("An error occured on video get: \(error.localizedDescription)")
-                }
-                seal.resolve(
-                    video?.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]
-                        ?? video?.streamURLs[XCDYouTubeVideoQuality.HD720.rawValue],
-                    error)
-            })
+            YTVimeoExtractor.shared().fetchVideo(withIdentifier: self.contentVideoIdString, withReferer: nil) {
+              seal.resolve($0?.httpLiveStreamURL ?? $0?.highestQualityStreamURL() ?? $0?.lowestQualityStreamURL(), $1)
+            }
         }.asCancellable()
     }
 

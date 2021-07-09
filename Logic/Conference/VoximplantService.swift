@@ -220,7 +220,7 @@ final class VoximplantService:
                 self.connectCompletion = nil
                 completion(error)
             }
-            self.client.connect()
+            self.client.connect(withConnectivityCheck: true, gateways: nil)
         } else {
             log("Already connected - executing completion")
             completion(nil)
