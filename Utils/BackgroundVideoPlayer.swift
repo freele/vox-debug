@@ -49,10 +49,14 @@ public class BackgroundVideoPlayer: UIViewController {
         }
 
         self.video = Promise { seal in
-            YTVimeoExtractor.shared().fetchVideo(withIdentifier: self.contentVideoIdString, withReferer: nil) {
-              seal.resolve($0?.httpLiveStreamURL ?? $0?.highestQualityStreamURL() ?? $0?.lowestQualityStreamURL(), $1)
-            }
+          seal.resolve(.fulfilled(URL(string: "https://content.uplynk.com/channel/cff38c4727c043229ff73c882db7b121.m3u8")!))
         }.asCancellable()
+        
+//        self.video = Promise { seal in
+//            YTVimeoExtractor.shared().fetchVideo(withIdentifier: self.contentVideoIdString, withReferer: nil) {
+//              seal.resolve($0?.httpLiveStreamURL ?? $0?.highestQualityStreamURL() ?? $0?.lowestQualityStreamURL(), $1)
+//            }
+//        }.asCancellable()
     }
 
     public func deactivate() {
